@@ -2,11 +2,10 @@
 #'
 #' \code{summary} method for class "\code{\link{epx}}".
 #'
-#' @param object Object of class "\code{epx}"; a result to a call to
-#'   \code{\link{epx}}.
+#' @param object Object of class "\code{epx}" returned by \code{\link{epx}}.
 #' @param ... Further arguments passed to or from other methods.
-#' @return Prints a summary of the main results of the phalanx-formation
-#'   algorithm performed by \code{\link{epx}}.
+#' @return Prints a summary of the object returned by the phalanx-formation
+#'   algorithm \code{\link{epx}}.
 #' @examples
 #' # Example with data(harvest)
 #' \donttest{
@@ -18,7 +17,7 @@
 #'             classifier.args = list(ntree = 50))
 #' summary(model)
 #'
-#' ## The summary corresponds with
+#' ## The summary agrees with
 #' (model$PHALANXES)[[4]]
 #' }
 #' @export
@@ -35,13 +34,13 @@ summary.epx <- function(object, ...) {
 
   cat("Phalanx-formation algorithm starts with", nvars, "variable(s)", "\n")
   cat("and ends with", length(var.names[groups > 0]),
-      "variable(s) grouped into",
+      " variable(s) grouped into",
       length(sort.unique.groups), "phalanxes:", "\n")
   cat(sort.unique.groups, "\n")
 
   i <- 0
   for (j in sort.unique.groups) {
-    cat("------", "\n")
+    message("------", "\n")
     i <- i + 1
     namef <- NULL
     namef <- var.names[groups == j]
@@ -52,5 +51,3 @@ summary.epx <- function(object, ...) {
         "is", AHR[i], "\n")
   }
 }
-
-

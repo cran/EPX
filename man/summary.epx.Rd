@@ -7,14 +7,13 @@
 \method{summary}{epx}(object, ...)
 }
 \arguments{
-\item{object}{Object of class "\code{epx}"; a result to a call to
-\code{\link{epx}}.}
+\item{object}{Object of class "\code{epx}" returned by \code{\link{epx}}.}
 
 \item{...}{Further arguments passed to or from other methods.}
 }
 \value{
-Prints a summary of the main results of the phalanx-formation
-algorithm performed by \code{\link{epx}}.
+Prints a summary of the object returned by the phalanx-formation
+algorithm \code{\link{epx}}.
 }
 \description{
 \code{summary} method for class "\code{\link{epx}}".
@@ -30,7 +29,7 @@ model <- epx(x = harvest[, -4], y = harvest[, 4],
             classifier.args = list(ntree = 50))
 summary(model)
 
-## The summary corresponds with
+## The summary agrees with
 (model$PHALANXES)[[4]]
 }
 }

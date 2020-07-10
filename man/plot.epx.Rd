@@ -12,7 +12,7 @@
 \item{max.cutoff}{Maximum number of observations selected, equivalently the
 maximum shortlist cutoff; default is \code{min(100, length(x$Y))}.}
 
-\item{plot.hc}{Whether to return a plot of the hit curve; default is
+\item{plot.hc}{Whether to make a plot of the hit curve; default is
 \code{TRUE}.}
 
 \item{...}{Further arguments passed to or from other methods.}

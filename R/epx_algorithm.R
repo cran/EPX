@@ -6,7 +6,7 @@
 epxAlgorithm <- function(x,
                          y,
                          phalanxes.initial,
-                         iquant,
+                         alpha,
                          nsim,
                          rmin.target,
                          classifier, classifier.args,
@@ -70,13 +70,13 @@ epxAlgorithm <- function(x,
     PM(y, pr1, ties = FALSE)
   }  # the empirical reference distribution
   qmean <- quantile(qsim, prob = 0.50)
-  qsim <- quantile(qsim, prob = iquant)
+  qsim <- quantile(qsim, prob = alpha)
 
-  message("Phalanx formation is in progress, please wait ", "\n")
+  message("Phalanx formation is in progress, please wait", "\n")
 
-  message("Reference distribution quantiles: ", "\n")
-  message("q", iquant, " = ", qsim, "\n", sep = "")
-  message("q0.50 = ", qmean, "\n\n")
+  message("Reference distribution quantiles:", "\n")
+  message("a", alpha, " = ", qsim, "\n", sep = "")
+  message("a0.50 =", qmean, "\n\n")
 
   # STEP 1 INITIAL GROUPING DONE ###############################################
   step1phalanxes <- as.numeric(phalanxes.initial)  # 0 means belongs in no phalanx
@@ -374,7 +374,7 @@ epxAlgorithm <- function(x,
   # WHAT IF ALL GROUPS FILTERED OUT?
   if (length(CKEEP2) == 0) {
     step4phalanxes <- step3phalanxes
-    cat("Final filtering step removes all candidate phalanxes. Unfiltered phalanxes returned as final phalanxes.", "\n")
+    message("Final filtering step removes all candidate phalanxes. Unfiltered phalanxes returned as final phalanxes.", "\n")
   }
 
   # getting predicted values etc.

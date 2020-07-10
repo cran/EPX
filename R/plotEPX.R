@@ -10,7 +10,7 @@
 #' @param x Object of class "\code{\link{epx}}".
 #' @param max.cutoff Maximum number of observations selected, equivalently the
 #'   maximum shortlist cutoff; default is \code{min(100, length(x$Y))}.
-#' @param plot.hc Whether to return a plot of the hit curve; default is
+#' @param plot.hc Whether to make a plot of the hit curve; default is
 #'   \code{TRUE}.
 #' @param ... Further arguments passed to or from other methods.
 #' @return Plot of the hit curve (if \code{plot.hc = TRUE}) and a list with the

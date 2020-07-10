@@ -1,15 +1,14 @@
-#' AID348 test data with Burden Numbers for testing the EPX package
+#' AID348 hold-out data using Burden Numbers for testing the EPX package
 #'
-#' AID348 test dataset with 24 burden numbers as explanatory variables.
+#' AID348 hold-out data with 24 burden numbers as explanatory variables.
 #' Demonstrates in a timely manner \code{\link{epx}}, the phalanx-formation
 #' algorithm in \pkg{EPX} and associated functions \code{\link{summary.epx}},
-#' \code{\link{predict.epx}} , \code{\link{plot.epx}}, \code{\link{cv.epx}},
-#' \code{\link{hit.curve}}.
+#' \code{\link{predict.epx}} , \code{\link{plot.epx}}, \code{\link{hit.curve}}.
 #'
 #' @format A dataframe with 3946 rows and 25 variables:
 #' \describe{
 #'   \item{WBN}{Burden numbers descriptor set with 24 variables.}
-#'   \item{y}{The response variable where 1 denotes activity and 0 inactivity.}
+#'   \item{y}{The response variable where 1 denotes active and 0 inactive.}
 #' }
 #'
 #' @references

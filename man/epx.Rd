@@ -8,7 +8,7 @@ epx(
   x,
   y,
   phalanxes.initial = c(1:ncol(x)),
-  iquant = 0.95,
+  alpha = 0.95,
   nsim = 1000,
   rmin.target = 1,
   classifier = "random forest",
@@ -20,47 +20,50 @@ epx(
 )
 }
 \arguments{
-\item{x}{Explanatory variables contained in a data frame.}
+\item{x}{Explanatory variables (predictors, features) contained in a data frame.}
 
-\item{y}{Binary response variable vector (numeric or integer);
-1 is the rare class, 0 is non-rare.}
+\item{y}{Binary response variable vector (numeric or integer):
+1 for the rare class, 0 for the majority class.}
 
-\item{phalanxes.initial}{Initial variable grouping indices; default is no
-grouping. Example: define as vector c(1, 1, 2, 2, 3, ...); note that cannot
-indices cannot be skipped i.e. c( 1, 3, 3, 4, 4, 3, 1) is invalid.}
+\item{phalanxes.initial}{Initial variable group indices; default one group
+per variable. Example: vector c(1, 1, 2, 2, 3, ...) puts variables 1 and 2
+in group 1, variables 3 and 4 in group, 2, etc.  Indices cannot
+be skipped, e.g., c( 1, 3, 3, 4, 4, 3, 1) skips group 2 and is invalid.}
 
-\item{iquant}{Quantile index for the distribution of the performance measure
-(default is average hit rate) of a classifier that does random ranking
-(i.e. predictors have no explanatory power at all); default is 0.95.}
+\item{alpha}{Lower-tail probability for the critical quantile of the reference
+distribution of the \code{performance} measure for a classifier that ranks
+at random (i.e., the predictors have no explanatory power); default is 0.95.}
 
-\item{nsim}{Number of simulations done to get the reference distribution of
+\item{nsim}{Number of simulations for the reference empirical distribution of
 the performance measure; default is 1000.}
 
-\item{rmin.target}{Minimum number of variables in each phalanx; default is 1.}
+\item{rmin.target}{To merge the pair of groups with the
+minimum ratio of performance measures (ensemble of models to single model)
+into a single group their ratio must be less than
+\code{rmin.target}, otherwise merging stops; default is 1.}
 
-\item{classifier}{Choice of base classifier from one of:
+\item{classifier}{Base classifier, one of
 \code{c("random forest", "logistic regression", "neural network")};
 default is "random forest", which uses
 \code{\link[randomForest]{randomForest}}.}
 
-\item{classifier.args}{Arguments relating to the base \code{classifier}
+\item{classifier.args}{Arguments for the base \code{classifier}
 specified in a list as follows: \code{list(argName1 = value1, argName2 =
-  value2, ...)}. If left empty, the classifier will use whatever its defaults
-happen to be. For "random forest", user may specify \code{replace, cutoff,
+  value2, ...)}. If the list is empty, the classifier will use
+its defaults.  For "random forest", user may specify \code{replace, cutoff,
   nodesize, maxnodes}. For "logistic regression" there are no options. For
 "neural network", user may specify \code{size, trace}.}
 
-\item{performance}{Choice of performance measure; default is
-\code{\link{AHR}}. Must be one of:
-\code{c("\link{AHR}", "\link{IE}", "\link{TOP1}", "\link{RKL}")}.}
+\item{performance}{Performance assessment metric, one of
+\code{c("\link{AHR}", "\link{IE}", "\link{TOP1}", "\link{RKL}")};
+default is \code{\link{AHR}}.}
 
-\item{performance.args}{Arguments relating to the \code{performance}
+\item{performance.args}{Arguments for the \code{performance} measure
 specified in a list as follows:
 \code{list(argName1 = value1, argName2 = value2, ...)}.
-If left empty, the performance will use whatever its
-defaults happens to be. User may only specify \code{cutoff} for
-\code{\link{IE}} since all other performance measures have no additional
-parameters.}
+If the list is empty, the performance measure will use its
+defaults. Currently,  only \code{\link{IE}} takes an argument list,
+and its only argument is \code{cutoff}.}
 
 \item{computing}{Whether to compute sequentially or in parallel. Input is one
 of \code{c("sequential", "parallel")}; default is "sequential".}
@@ -68,27 +71,24 @@ of \code{c("sequential", "parallel")}; default is "sequential".}
 \item{...}{Further arguments passed to or from other methods.}
 }
 \value{
-The \code{epx} function returns an object of class "\code{epx}". The
-function \code{\link{summary.epx}} prints a summary of the results. An
-object of class "\code{epx}" is a list containing the following components:
+Returns an object of class \code{epx}, which is
+a list containing the following components:
 \item{PHALANXES}{List of four vectors, each the same length as the number of
-explanatory variables (columns in \code{X}): \code{phalanxes.initial},
+explanatory variables (columns in \code{x}): \code{phalanxes.initial},
 \code{phalanxes.filtered}, \code{phalanxes.merged}, \code{phalanxes.final}.
-Each vector records the phalanx membership of all explanatory variables in
-the four stages of phalanx-formation. The \eqn{i}th entry of a vector
-indicates to which phalanx the \eqn{i}th variable belongs. Phalanx "0" does
-not exist and so membership to phalanx "0" means that the variable does not
-belong to any phalanx.}
-\item{PHALANXES.FINAL.PERFORMANCE}{Vector with the performance measure,
-according to the specified \code{performance}, of each of the final
-phalanxes. The indices match the phalanx number.}
+Each vector contains the phalanx membership indices of all explanatory variables
+at one of the four stages of phalanx-formation. Element \eqn{i} of a vector
+is the index of the phalanx to which variable \eqn{i} belongs. Phalanx 0 does
+not exist and so membership in phalanx 0 indicates that the variable does not
+belong to any phalanx; it has been screened out.}
+\item{PHALANXES.FINAL.PERFORMANCE}{Vector of \code{performance} measures of
+the final phalanxes: the first element is for phalanx 1, etc.}
 \item{PHALANXES.FINAL.FITS}{A matrix with number of rows equal to the number
 of observations in the training data and number of columns equal to the
-number of final phalanxes. The \eqn{i}th column is the predicted
-probabilities of relevance of each observation produced by fitting the base
-classifier, specified by \code{classifier}, to the \eqn{i}th phalanx's
-variables.}
-\item{ENSEMBLED.FITS}{The predicted probabilities of relevance from the
+number of final phalanxes.  Column \eqn{i} contains the predicted
+probabilities of class 1 from fitting the base \code{classifier} to the
+variables in phalanx \eqn{i}.}
+\item{ENSEMBLED.FITS}{The predicted probabilities of class 1 from the
 ensemble of phalanxes based on \code{phalanxes.final}.}
 \item{BASE.CLASSIFIER.ARGS}{(Parsed) record of user-specified arguments for
 \code{classifier}.}
@@ -98,36 +98,40 @@ ensemble of phalanxes based on \code{phalanxes.final}.}
 \item{Y}{User-provided binary response vector.}
 }
 \description{
-\code{epx} forms phalanxes of variables from a given training dataset where
-the response is a binary response variable with a rare class. Each of these
-disjoint subsets of variables is then fit with a base classifier together
-which forms the emsemble. Typically performance will then be assessed with
-\code{\link{cv.epx}}. Please see Tomal et al. (2015) for more details.
+\code{epx} forms phalanxes of variables from training data for
+binary classification with a rare class. The phalanxes are
+disjoint subsets of variables, each of which is fit with a base classifier.
+Together they form an ensemble.
+}
+\details{
+Please see Tomal et al. (2015) for more description of phalanx formation.
 }
 \examples{
 # Example with data(harvest)
 
-## Phalanx-formation using a base classifier with 500 trees (default)
+## Phalanx-formation using a base classifier with 50 trees (default = 500)
+\donttest{
 set.seed(761)
 model <- epx(x = harvest[, -4], y = harvest[, 4],
-             classifier.args = list(ntree = 500))
+             classifier.args = list(ntree = 50))
 
-## See how phalanx-membership of variables at all four steps
-## (0 means not in a phalanx.)
-(model$PHALANXES)
+## Phalanx-membership of explanatory variables at the four stages
+## of phalanx formation (0 means not in a phalanx)
+model$PHALANXES
 
-## Summary of how predictors divided into the final phalanxes (matches above)
+## Summary of the final phalanxes (matches above)
 summary(model)
-
+\dontrun{
 ## Parallel computing
-## (Commented out for speed.)
-# clusters <- parallel::detectCores()
-# cl <- parallel::makeCluster(clusters)
-# doParallel::registerDoParallel(cl)
-# set.seed(761)
-# model.par <- epx(x = harvest[, -4], y = harvest[, 4],
-#                  computing = "parallel")
-# parallel::stopCluster(cl)
+clusters <- parallel::detectCores()
+cl <- parallel::makeCluster(clusters)
+doParallel::registerDoParallel(cl)
+set.seed(761)
+model.par <- epx(x = harvest[, -4], y = harvest[, 4],
+                 computing = "parallel")
+parallel::stopCluster(cl)
+}
+}
 }
 \references{
 Tomal, J. H., Welch, W. J., & Zamar, R. H. (2015).
@@ -136,4 +140,8 @@ applications in drug discovery.
 \emph{The Annals of Applied Statistics},
 \emph{9}(1), 69-93.
 \url{http://doi.org/10.1214/14-AOAS778}
+}
+\seealso{
+\code{\link{summary.epx}} prints a summary of the results,
+and \code{\link{cv.epx}} assesses performance via cross-validation.
 }

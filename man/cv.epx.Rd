@@ -17,11 +17,10 @@ cv.epx(
 \arguments{
 \item{epx}{Object of class "\code{\link{epx}}".}
 
-\item{folds}{Optional vector specifying to which fold each observation is to
-be assigned. Must be an \eqn{n}-length vector (\eqn{n} being the number of
+\item{folds}{Optional vector specifying to which fold each observation belongs. Must be an \eqn{n}-length vector (\eqn{n} being the number of
 observations) with integer values only in the range from 1 to \eqn{K}.}
 
-\item{K}{K-fold cross-validation; default is 10.}
+\item{K}{Number of folds; default is 10.}
 
 \item{folds.out}{Indicates whether a vector indicating fold membership for
 each of the observations will be output; default is \code{FALSE}.}
@@ -37,18 +36,18 @@ each of the observations will be output; default is \code{FALSE}.}
 \value{
 An \eqn{(n + 1)} by \eqn{(p + 1)} matrix, where \eqn{n} is the number
 of observations used to train \code{epx} and \eqn{p} is the number of
-(final) phalanxes. The \eqn{p + 1} column of the matrix is the predicted
-probabilities of relevance from the ensemble of phalanxes, and the \eqn{n +
-  1} row is the performance (choice of performance measure determined by the
+(final) phalanxes. Column \eqn{p + 1} of the matrix contains the predicted
+probabilities of relevance from the ensemble of phalanxes,
+and row \eqn{n + 1} is the performance (choice of performance measure determined by the
 "\code{\link{epx}}" object) of the corresponding column.
 
-Setting \code{folds.out} as \code{TRUE} changes the output of \code{cv.epx}
-into a list of two elements:
-\item{EPX.CV}{The \eqn{(n + 1)} by \eqn{(p + 1)} matrix attained by
+Setting \code{folds.out} as \code{TRUE} changes the output of
+\code{cv.epx} into a list of two elements:
+\item{EPX.CV}{The \eqn{(n + 1)} by \eqn{(p + 1)} matrix returned by
 default when \code{folds.out = FALSE}.}
-\item{FOLDS.USED}{A vector of length \eqn{n} with integer values only in
-the range from 1 to \code{K} indicating to which fold each observation was
-shuffled for cross-validation.}
+\item{FOLDS.USED}{A vector of length \eqn{n} with integer values only
+in the range from 1 to \code{K} indicating to which fold
+each observation was randomly assigned for cross-validation.}
 }
 \description{
 Balanced K-fold cross-validation based on an "\code{\link{epx}}" object.

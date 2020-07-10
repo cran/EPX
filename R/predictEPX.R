@@ -46,23 +46,23 @@ predict.epx <- function(object, newdata,
 
   ## clarifying what arguments used for the base classifier in predict
   ## vs. what was specified when creating the epx object
-  message("Base classifier: ", (object$BASE.CLASSIFIER.ARGS)[[1]], "\n")
+  message("Base classifier:", (object$BASE.CLASSIFIER.ARGS)[[1]], "\n")
 
   epx.classifier.args <- (object$BASE.CLASSIFIER.ARGS)[[2]]
-  message("Base classifier arguments specified in phalanx-formation: ")
+  message("Base classifier arguments specified in phalanx-formation:")
   if (length(epx.classifier.args) == 0) {  # no user args in epx
     message(" none", "\n")
   } else {  # there are user args in epx
     message("\n")
-    print(epx.classifier.args)
+    message(epx.classifier.args)
   }
 
-  message("Base classifier arguments specified in prediction: ")
+  message("Base classifier arguments specified in prediction:")
   if (length(classifier.args) == 0) {  # no user args from predict
     message(" none", "\n")
   } else {  # there are user args in predict
     message("\n")
-    print(classifier.args)
+    message(classifier.args)
   }
 
   # when newdata is missing values

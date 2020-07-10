@@ -7,10 +7,10 @@
 \format{
 A dataframe with 190 rows and 4 variables:
 \describe{
-\item{LogP}{Octanol/water partition coefficient (-2 to 7 degrees celsius).}
-\item{MeltPt}{Melting point (120 to 280 decrees celsius).}
-\item{MolWt}{Molecular weight (200 to 800 degrees celsiys).}
-\item{y}{The response variable where 1 denotes activity and 0 inactivity.}
+\item{LogP}{Octanol/water partition coefficient (-2 to 7).}
+\item{MeltPt}{Melting point (120 to 280 degrees Celsius).}
+\item{MolWt}{Molecular weight (200 to 800).}
+\item{y}{The response variable where 1 denotes active and 0 inactive.}
 }
 }
 \usage{

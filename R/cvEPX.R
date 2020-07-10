@@ -5,10 +5,9 @@
 #' phalanx-formation algorithm for each fold.
 #'
 #' @param epx Object of class "\code{\link{epx}}".
-#' @param folds Optional vector specifying to which fold each observation is to
-#'   be assigned. Must be an \eqn{n}-length vector (\eqn{n} being the number of
+#' @param folds Optional vector specifying to which fold each observation belongs. Must be an \eqn{n}-length vector (\eqn{n} being the number of
 #'   observations) with integer values only in the range from 1 to \eqn{K}.
-#' @param K K-fold cross-validation; default is 10.
+#' @param K Number of folds; default is 10.
 #' @param folds.out Indicates whether a vector indicating fold membership for
 #'   each of the observations will be output; default is \code{FALSE}.
 #' @param classifier.args Arguments for the base classifier specified by
@@ -18,18 +17,18 @@
 #' @param ... Further arguments passed to or from other methods.
 #' @return An \eqn{(n + 1)} by \eqn{(p + 1)} matrix, where \eqn{n} is the number
 #'   of observations used to train \code{epx} and \eqn{p} is the number of
-#'   (final) phalanxes. The \eqn{p + 1} column of the matrix is the predicted
-#'   probabilities of relevance from the ensemble of phalanxes, and the \eqn{n +
-#'   1} row is the performance (choice of performance measure determined by the
+#'   (final) phalanxes. Column \eqn{p + 1} of the matrix contains the predicted
+#'   probabilities of relevance from the ensemble of phalanxes,
+#'   and row \eqn{n + 1} is the performance (choice of performance measure determined by the
 #'   "\code{\link{epx}}" object) of the corresponding column.
 #'
-#'   Setting \code{folds.out} as \code{TRUE} changes the output of \code{cv.epx}
-#'   into a list of two elements:
-#'   \item{EPX.CV}{The \eqn{(n + 1)} by \eqn{(p + 1)} matrix attained by
+#'   Setting \code{folds.out} as \code{TRUE} changes the output of
+#'   \code{cv.epx} into a list of two elements:
+#'   \item{EPX.CV}{The \eqn{(n + 1)} by \eqn{(p + 1)} matrix returned by
 #'   default when \code{folds.out = FALSE}.}
-#'   \item{FOLDS.USED}{A vector of length \eqn{n} with integer values only in
-#'   the range from 1 to \code{K} indicating to which fold each observation was
-#'   shuffled for cross-validation.}
+#'   \item{FOLDS.USED}{A vector of length \eqn{n} with integer values only
+#'   in the range from 1 to \code{K} indicating to which fold
+#'   each observation was randomly assigned for cross-validation.}
 #' @examples
 #' # Example with data(harvest)
 #'
@@ -90,24 +89,24 @@ cv.epx <- function(epx,
 
   ## clarifying what arguments used for the base classifier in predict
   ## vs. what was specified when creating the epx object
-  message("Base classifier: ", (epx$BASE.CLASSIFIER.ARGS)[[1]], "\n")
+  message("Base classifier:", (epx$BASE.CLASSIFIER.ARGS)[[1]], "\n")
 
   epx.classifier.args <- (epx$BASE.CLASSIFIER.ARGS)[[2]]
-  message("Base classifier arguments specified in phalanx-formation: ")
+  message("Base classifier arguments specified in phalanx-formation:")
   if (length(epx.classifier.args) == 0) {  # no user args in epx
     message(" none", "\n")
   } else {  # there are user args in epx
     message("\n")
-    print(epx.classifier.args)
+    message(epx.classifier.args)
   }
 
-  message("Base classifier arguments specified in balanced ")
-  message(" ", K, "-fold cross-validation: ", sep = "")
+  message("Base classifier arguments specified in balanced")
+  message(" ", K, "-fold cross-validation:", sep = "")
   if (length(classifier.args) == 0) {  # no user args from cv
     message(" none", "\n")
   } else {  # there are user args in cv
     message("\n")
-    print(classifier.args)
+    message(classifier.args)
   }
 
   # balanced cross-validation starts here ######################################
