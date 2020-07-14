@@ -1,7 +1,7 @@
 Package: EPX
 Type: Package
 Title: Ensemble of Phalanxes
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(
     person("Jabed", "Tomal", email = "jtomal@tru.ca", role = c("aut", "cre")),
     person("Grace", "Hsu", email = "grace.hsu.ubc@gmail.com", role = c("aut")),
@@ -19,15 +19,15 @@ Description: An ensemble method for the statistical detection of
 License: GPL-3
 Encoding: UTF-8
 LazyData: TRUE
-Depends: R (>= 4.0.0), foreach, randomForest
+Depends: R (>= 3.6.0), foreach, randomForest
 Imports: nnet, doParallel, doRNG, rngtools
 RoxygenNote: 7.1.0
 Suggests: knitr, rmarkdown, testthat
 NeedsCompilation: yes
-Packaged: 2020-07-10 05:11:17 UTC; jtomal
+Packaged: 2020-07-14 05:25:47 UTC; jtomal
 Author: Jabed Tomal [aut, cre],
   Grace Hsu [aut],
   William Welch [aut],
   Marcia Wang [ctb]
 Repository: CRAN
-Date/Publication: 2020-07-10 15:20:26 UTC
+Date/Publication: 2020-07-14 13:10:16 UTC
