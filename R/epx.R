@@ -11,7 +11,7 @@
 #' applications in drug discovery.
 #' \emph{The Annals of Applied Statistics},
 #' \emph{9}(1), 69-93.
-#' \url{http://doi.org/10.1214/14-AOAS778}
+#' \doi{10.1214/14-AOAS778}
 #'
 #' @param x Explanatory variables (predictors, features) contained in a data frame.
 #' @param y Binary response variable vector (numeric or integer):

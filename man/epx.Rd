@@ -139,7 +139,7 @@ Ensembling classification models based on phalanxes of variables with
 applications in drug discovery.
 \emph{The Annals of Applied Statistics},
 \emph{9}(1), 69-93.
-\url{http://doi.org/10.1214/14-AOAS778}
+\doi{10.1214/14-AOAS778}
 }
 \seealso{
 \code{\link{summary.epx}} prints a summary of the results,

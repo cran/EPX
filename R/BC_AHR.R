@@ -14,7 +14,6 @@
 #' \emph{Statistical Methods for High Throughput Screening Drug Discovery Data}
 #' (Doctoral thesis).
 #' University of Waterloo, Waterloo, Ontario, Canada.
-#' Retrieved from \url{http://etd.uwaterloo.ca/etd/y32wang2005.pdf}
 #'
 #' @param y True (binary) response vector where 1 is the rare/relevant class.
 #' @param phat Numeric vector of estimated probabilities of relevance.

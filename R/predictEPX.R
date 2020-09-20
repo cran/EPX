@@ -54,7 +54,7 @@ predict.epx <- function(object, newdata,
     message(" none", "\n")
   } else {  # there are user args in epx
     message("\n")
-    message(epx.classifier.args)
+    print(epx.classifier.args)
   }
 
   message("Base classifier arguments specified in prediction:")
@@ -62,7 +62,7 @@ predict.epx <- function(object, newdata,
     message(" none", "\n")
   } else {  # there are user args in predict
     message("\n")
-    message(classifier.args)
+    print(classifier.args)
   }
 
   # when newdata is missing values

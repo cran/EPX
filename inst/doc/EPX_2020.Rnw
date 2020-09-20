@@ -1,0 +1,9 @@
+\documentclass{article}
+\usepackage{pdfpages}
+%\VignetteIndexEntry{How to use the EPX package}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\includepdf[pages=-, fitpaper=true]{Tomal2020EPX.pdf}
+
+\end{document}

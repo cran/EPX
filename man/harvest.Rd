@@ -28,6 +28,6 @@ Yuan, Y., Chipman, H. A., & Welch, W. J. (2012).
 Harvesting Classification Trees for Drug Discovery.
 \emph{Journal of Chemical Information and Modeling},
 \emph{52}(12), 3169-3180.
-\url{http://pubs.acs.org/doi/abs/10.1021/ci3000216}
+\doi{10.1021/ci3000216}
 }
 \keyword{datasets}
