@@ -1,4 +1,4 @@
-5f607284dc94e24484206ee72e2ae9b5 *DESCRIPTION
+84bb826f5ca510b6c3ad68808e71ecfb *DESCRIPTION
 5cc7f9253515e3ebeb272a66e68792a4 *NAMESPACE
 c516a4f0df6a4ecddbe30f393e551310 *R/BC_AHR.R
 3b24f051f67940611bff9fd28fe7192c *R/BC_IE.R
@@ -17,13 +17,13 @@ c05b49f6dc832f10e6f94a3323cef31e *R/getBaseClassifier.R
 c0c27c78e619a4fa7a94ebc2330d69a6 *R/plotEPX.R
 1a37bbddda4062cd3baac8f29e18f3b0 *R/predictEPX.R
 b1fcebd3949c0de778e14415a36c55b0 *R/summaryEPX.R
-526a1717852492b95d05ed352de2182b *build/partial.rdb
-dcbb77f3ea7a4cbbc8c66296ec332a43 *build/vignette.rds
+15ae53c074ec0f0c3f87b558dfc37d9a *build/partial.rdb
+22c4546807292ec2d094e3f21fcdb1c1 *build/vignette.rds
 74e810773f9871518db1fbc3df1cc31c *data/BNhold.rda
 64929df1e6f402778686bc22f9923dc3 *data/BNsample.rda
 498653009a59fd17bcef4f60ddfd99ae *data/harvest.rda
-d24b17053b2924e29f51d92be8edd4f9 *inst/doc/EPX_2020.Rnw
-a4d8c4c0cf322c8467c7864908394db1 *inst/doc/EPX_2020.pdf
+e224667c0f8d0cedf029c03521129787 *inst/doc/EPX_2021.Rnw
+2a8ceae150f860539562192683c2a102 *inst/doc/EPX_2021.pdf
 bfa1a6203d8357d189c2c9422b130f53 *man/AHR.Rd
 f6ba92d3ae7f77167b9d5a95d078b3b2 *man/BNhold.Rd
 d6ab77157e71ed2eefacd1ee0706db6c *man/BNsample.Rd
@@ -44,5 +44,5 @@ c8612e5dd0d912a7ae5767a245db3ba0 *src/precision.c
 f190926e89f5cb32996a787f57b6d94e *tests/testthat/test-IE.R
 9de5982408c6bd934e38defeb911493f *tests/testthat/test-RKL.R
 7d2a83f7f398437fe7362ddc7f6c424e *tests/testthat/test-TOP1.R
-d24b17053b2924e29f51d92be8edd4f9 *vignettes/EPX_2020.Rnw
-4162b3a395254242a56dc3761e61802c *vignettes/Tomal2020EPX.pdf
+e224667c0f8d0cedf029c03521129787 *vignettes/EPX_2021.Rnw
+e9e921dd874e5dec6f84e90ba5961f13 *vignettes/Tomal2021EPX.pdf

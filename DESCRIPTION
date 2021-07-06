@@ -1,7 +1,7 @@
 Package: EPX
 Type: Package
 Title: Ensemble of Phalanxes
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: c(
     person("Jabed", "Tomal", email = "jtomal@tru.ca", role = c("aut", "cre")),
     person("Grace", "Hsu", email = "grace.hsu.ubc@gmail.com", role = c("aut")),
@@ -25,10 +25,10 @@ RoxygenNote: 7.1.1
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2020-09-20 19:27:07 UTC; jtomal
+Packaged: 2021-07-06 21:03:08 UTC; jtomal
 Author: Jabed Tomal [aut, cre],
   Grace Hsu [aut],
   William Welch [aut],
   Marcia Wang [ctb]
 Repository: CRAN
-Date/Publication: 2020-09-20 19:50:09 UTC
+Date/Publication: 2021-07-06 21:50:07 UTC
